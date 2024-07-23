@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoEnergy Donations - Volunteer</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --background-color: #FFFFFF;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .volunteer-section {
+            padding: 6rem 0 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .volunteer-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .volunteer-intro,
+        .volunteer-opportunities,
+        .volunteer-signup,
+        .volunteer-impact {
+            flex: 1 1 calc(50% - 1rem);
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .volunteer-intro h2,
+        .volunteer-opportunities h2,
+        .volunteer-signup h2,
+        .volunteer-impact h2 {
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .opportunity-card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .opportunity-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--background-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: opacity 0.2s ease-in;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .impact-stat {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .impact-stat h3 {
+            font-size: 2rem;
+            color: var(--secondary-color);
+        }
+
+        .footer {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: var(--background-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .volunteer-container > div {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>EcoEnergy Donations</h1>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Donation.html">Donate</a></li>
+                <li><a href="Track.html">Track</a></li>
+                <li><a href="Impact.html">Impact</a></li>
+                <li><a href="Volunteer.html">Volunteer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="volunteer" class="volunteer-section">
+        <div class="container volunteer-container">
+            <div class="volunteer-intro">
+                <h2>Join Our Volunteer Community</h2>
+                <p>At EcoEnergy Donations, we believe that volunteering is a powerful way to make a tangible difference in the fight against climate change. By giving your time and skills, you can help us accelerate the transition to clean energy and create a sustainable future for all.</p>
+                <p>Whether you're passionate about renewable energy, community outreach, or environmental education, we have opportunities for you to get involved and make an impact.</p>
+            </div>
+
+            <div class="volunteer-opportunities">
+                <h2>Current Opportunities</h2>
+                <div id="opportunitiesList">
+                    <!-- Volunteer opportunities will be inserted here -->
+                </div>
+            </div>
+
+            <div class="volunteer-signup">
+                <h2>Sign Up to Volunteer</h2>
+                <form id="volunteerForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input type="tel" id="phone" name="phone" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="interest">Area of Interest</label>
+                        <select id="interest" name="interest" required>
+                            <option value="">Select an option</option>
+                            <option value="solar">Solar Energy Projects</option>
+                            <option value="wind">Wind Energy Projects</option>
+                            <option value="education">Environmental Education</option>
+                            <option value="community">Community Outreach</option>
+                            <option value="admin">Administrative Support</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Sign Up</button>
+                </form>
+            </div>
+
+            <div class="volunteer-impact">
+                <h2>Volunteer Impact</h2>
+                <div class="impact-stat">
+                    <h3 id="totalVolunteers">0</h3>
+                    <p>Active Volunteers</p>
+                </div>
+                <div class="impact-stat">
+                    <h3 id="hoursContributed">0</h3>
+                    <p>Hours Contributed</p>
+                </div>
+                <div class="impact-stat">
+                    <h3 id="projectsSupported">0</h3>
+                    <p>Projects Supported</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 EcoEnergy Donations. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="Feedback.html">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulated volunteer opportunities data (replace with actual data from your backend)
+        const volunteerOpportunities = [
+            { title: "Solar Panel Installation Assistant", description: "Help install solar panels in low-income communities. No prior experience required, training provided.", date: "Every Saturday" },
+            { title: "Wind Farm Tour Guide", description: "Lead educational tours at our wind farm sites. Knowledge of renewable energy preferred.", date: "Weekends" },
+            { title: "Community Outreach Coordinator", description: "Organize and participate in local events to promote clean energy adoption.", date: "Flexible" },
+            { title: "Administrative Support", description: "Assist with data entry, document preparation, and general office tasks.", date: "Weekdays" }
+        ];
+
+        // Simulated volunteer impact data (replace with actual data from your backend)
+        const volunteerImpact = {
+            totalVolunteers: 500,
+            hoursContributed: 10000,
+            projectsSupported: 75
+        };
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateVolunteerOpportunities();
+            displayVolunteerImpact();
+            setupVolunteerForm();
+        });
+
+        function populateVolunteerOpportunities() {
+            const opportunitiesList = document.getElementById('opportunitiesList');
+            volunteerOpportunities.forEach(opportunity => {
+                const opportunityCard = document.createElement('div');
+                opportunityCard.classList.add('opportunity-card');
+                opportunityCard.innerHTML = `
+                    <h3>${opportunity.title}</h3>
+                    <p>${opportunity.description}</p>
+                    <p><strong>When:</strong> ${opportunity.date}</p>
+                `;
+                opportunitiesList.appendChild(opportunityCard);
+            });
+        }
+
+        function displayVolunteerImpact() {
+            document.getElementById('totalVolunteers').textContent = volunteerImpact.totalVolunteers;
+            document.getElementById('hoursContributed').textContent = volunteerImpact.hoursContributed;
+            document.getElementById('projectsSupported').textContent = volunteerImpact.projectsSupported;
+        }
+
+        function setupVolunteerForm() {
+            const volunteerForm = document.getElementById('volunteerForm');
+            volunteerForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the form data to your server
+                alert('Thank you for signing up to volunteer! We will contact you soon with more information.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoEnergy Donations - Donate</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --background-color: #FFFFFF;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .donation-section {
+            padding: 6rem 0 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .donation-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .donation-form {
+            flex: 1;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-right: 2rem;
+        }
+
+        .donation-form h2 {
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .amount-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .amount-option {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+
+        .amount-option:last-child {
+            margin-right: 0;
+        }
+
+        .amount-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--background-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: opacity 0.2s ease-in;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .impact-section {
+            flex: 1;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .impact-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .impact-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .impact-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: var(--background-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .donation-container {
+                flex-direction: column;
+            }
+
+            .donation-form, .impact-section {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>EcoEnergy Donations</h1>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Donation.html">Donate</a></li>
+                <li><a href="Track.html">Track</a></li>
+                <li><a href="Impact.html">Impact</a></li>
+                <li><a href="Volunteer.html">Volunteer</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="donate" class="donation-section">
+        <div class="container donation-container">
+            <div class="donation-form">
+                <h2>Make a Donation</h2>
+                <form id="donationForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label>Donation Amount</label>
+                        <div class="amount-options">
+                            <div class="amount-option" data-amount="1000">Kes 1000</div>
+                            <div class="amount-option" data-amount="2500">Kes 2500</div>
+                            <div class="amount-option" data-amount="5000">Kes 5000</div>
+                            <div class="amount-option" data-amount="10000">Kes 10000</div>
+                            <div class="amount-option" data-amount="custom">Custom</div>
+                        </div>
+                        <input type="number" id="customAmount" name="customAmount" placeholder="Enter custom amount" style="display: none;">
+                    </div>
+                    <div class="form-group">
+                        <label for="frequency">Donation Frequency</label>
+                        <select id="frequency" name="frequency">
+                            <option value="one-time">One-time</option>
+                            <option value="monthly">Monthly</option>
+                            <option value="annually">Annually</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn">Donate Now</button>
+                </form>
+            </div>
+            <div class="impact-section">
+                <h2>Your Impact</h2>
+                <div class="impact-item">
+                    <h3>Kes 1000 can provide</h3>
+                    <p>Solar-powered lighting for one household for a month</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Kes 2500 can support</h3>
+                    <p>The installation of energy-efficient appliances in a low-income home</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Kes 5000 can fund</h3>
+                    <p>Educational programs on renewable energy for a classroom</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Kes 10000 can contribute to</h3>
+                    <p>The development of a community solar project</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 EcoEnergy Donations. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const amountOptions = document.querySelectorAll('.amount-option');
+            const customAmountInput = document.getElementById('customAmount');
+            const donationForm = document.getElementById('donationForm');
+
+            amountOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    amountOptions.forEach(opt => opt.classList.remove('selected'));
+                    this.classList.add('selected');
+                    if (this.dataset.amount === 'custom') {
+                        customAmountInput.style.display = 'block';
+                    } else {
+                        customAmountInput.style.display = 'none';
+                    }
+                });
+            });
+
+            donationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                let amount;
+                const selectedOption = document.querySelector('.amount-option.selected');
+                if (selectedOption.dataset.amount === 'custom') {
+                    amount = customAmountInput.value;
+                } else {
+                    amount = selectedOption.dataset.amount;
+                }
+                const frequency = document.getElementById('frequency').value;
+                alert(`Thank you for your ${frequency} donation of $${amount}!`);
+                // Here you would typically send this data to your server
+            });
+        });
+    </script>
+</body>
+</html>
