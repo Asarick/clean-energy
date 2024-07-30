@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Power Solutions - Our Impact</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --background-color: #FFFFFF;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .impact-section {
+            padding: 6rem 0 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .impact-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .impact-summary {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .impact-item {
+            text-align: center;
+            flex: 1;
+            min-width: 200px;
+            margin: 1rem;
+        }
+
+        .impact-item h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .impact-item p {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+        }
+
+        .impact-charts {
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+        }
+
+        .chart-container {
+            flex: 1;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .project-map {
+            height: 400px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        #map {
+            height: 100%;
+        }
+
+        .project-highlights {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .project-highlights h2 {
+            margin-bottom: 1rem;
+        }
+
+        .project-card {
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: var(--background-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .impact-charts {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>Eco Power Solutions</h1>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Donation.html">Donate</a></li>
+                <li><a href="Track.html">Track</a></li>
+                <li><a href="Impact.html">Impact</a></li>
+                <li><a href="Volunteer.html">Volunteer</a></li>
+                <li><a href="feedback.php">feedback</a></li>
+                <li><a href="login.php">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="impact" class="impact-section">
+        <div class="container impact-container">
+            <div class="impact-summary">
+                <div class="impact-item">
+                    <h3>Total Donations</h3>
+                    <p id="totalDonations">$0</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Projects Funded</h3>
+                    <p id="projectsFunded">0</p>
+                </div>
+                <div class="impact-item">
+                    <h3>CO2 Reduced</h3>
+                    <p id="co2Reduced">0 tons</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Lives Impacted</h3>
+                    <p id="livesImpacted">0</p>
+                </div>
+            </div>
+
+            <div class="impact-charts">
+                <div class="chart-container">
+                    <h2>Donations by Project Type</h2>
+                    <canvas id="donationsByTypeChart"></canvas>
+                </div>
+                <div class="chart-container">
+                    <h2>CO2 Reduction Over Time</h2>
+                    <canvas id="co2ReductionChart"></canvas>
+                </div>
+            </div>
+
+            <div class="project-map">
+                <div id="map"></div>
+            </div>
+
+            <div class="project-highlights">
+                <h2>Project Highlights</h2>
+                <div id="projectList">
+                    <!-- Project cards will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Eco Power Solutions. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="Feedback.html">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulated impact data (replace with actual data from your backend)
+        const impactData = {
+            totalDonations: 150000,
+            projectsFunded: 75,
+            co2Reduced: 50000,
+            livesImpacted: 80000
+        };
+
+        const projectTypes = {
+            labels: ['Solar', 'Wind', 'Hydro', 'Energy Efficiency'],
+            data: [40, 30, 20, 10]
+        };
+
+        const co2ReductionData = {
+            labels: ['2020', '2021', '2022', '2023', '2024'],
+            data: [5000, 15000, 28000, 40000, 50000]
+        };
+
+        const projectLocations = [
+            { name: "Solar Farm A", lat: 40.7128, lng: -74.0060 },
+            { name: "Wind Project B", lat: 51.5074, lng: -0.1278 },
+            { name: "Hydro Plant C", lat: 35.6762, lng: 139.6503 },
+        ];
+
+        const projectHighlights = [
+            { name: "Solar Farm A", description: "Providing clean energy to 10,000 homes", impact: "Reduced CO2 by 15,000 tons" },
+            { name: "Wind Project B", description: "Offshore wind farm powering coastal communities", impact: "Created 500 green jobs" },
+            { name: "Hydro Plant C", description: "Sustainable hydroelectric power generation", impact: "Provides 30% of region's electricity" },
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateImpactSummary();
+            createDonationsByTypeChart();
+            createCO2ReductionChart();
+            initializeMap();
+            populateProjectHighlights();
+        });
+
+        function updateImpactSummary() {
+            document.getElementById('totalDonations').textContent = `$${impactData.totalDonations.toLocaleString()}`;
+            document.getElementById('projectsFunded').textContent = impactData.projectsFunded;
+            document.getElementById('co2Reduced').textContent = `${impactData.co2Reduced.toLocaleString()} tons`;
+            document.getElementById('livesImpacted').textContent = impactData.livesImpacted.toLocaleString();
+        }
+
+        function createDonationsByTypeChart() {
+            const ctx = document.getElementById('donationsByTypeChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'pie',
+                data: {
+                    labels: projectTypes.labels,
+                    datasets: [{
+                        data: projectTypes.data,
+                        backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0']
+                    }]
+                }
+            });
+        }
+
+        function createCO2ReductionChart() {
+            const ctx = document.getElementById('co2ReductionChart').getContext('2d');
+            new Chart(ctx, {
+                type: 'line',
+                data: {
+                    labels: co2ReductionData.labels,
+                    datasets: [{
+                        label: 'CO2 Reduced (tons)',
+                        data: co2ReductionData.data,
+                        borderColor: 'rgb(75, 192, 192)',
+                        tension: 0.1
+                    }]
+                },
+                options: {
+                    scales: {
+                        y: {
+                            beginAtZero: true
+                        }
+                    }
+                }
+            });
+        }
+
+        function initializeMap() {
+            const map = L.map('map').setView([0, 0], 2);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                attribution: '© OpenStreetMap contributors'
+            }).addTo(map);
+
+            projectLocations.forEach(project => {
+                L.marker([project.lat, project.lng])
+                    .addTo(map)
+                    .bindPopup(project.name);
+            });
+        }
+
+        function populateProjectHighlights() {
+            const projectList = document.getElementById('projectList');
+            projectHighlights.forEach(project => {
+                const projectCard = document.createElement('div');
+                projectCard.classList.add('project-card');
+                projectCard.innerHTML = `
+                    <h3>${project.name}</h3>
+                    <p>${project.description}</p>
+                    <p><strong>Impact:</strong> ${project.impact}</p>
+                `;
+                projectList.appendChild(projectCard);
+            });
+        }
+    </script>
+</body>
+</html>

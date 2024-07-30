@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Power Solutions - Donate</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --background-color: #FFFFFF;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .donation-section {
+            padding: 6rem 0 4rem 0;
+            background-color: var(--background-color);
+            flex: 1;
+        }
+
+        .donation-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .donation-form {
+            flex: 1;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            margin-right: 2rem;
+        }
+
+        .donation-form h2 {
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"],
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .amount-options {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+        }
+
+        .amount-option {
+            flex: 1;
+            text-align: center;
+            padding: 0.5rem;
+            border: 1px solid var(--primary-color);
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 0.5rem;
+        }
+
+        .amount-option:last-child {
+            margin-right: 0;
+        }
+
+        .amount-option.selected {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--background-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: opacity 0.2s ease-in;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .impact-section {
+            flex: 1;
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        }
+
+        .impact-section h2 {
+            margin-bottom: 1rem;
+        }
+
+        .impact-item {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .impact-item h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .footer {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: auto;
+        }
+
+        .footer a {
+            color: var(--background-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .donation-container {
+                flex-direction: column;
+            }
+
+            .donation-form, .impact-section {
+                width: 100%;
+                margin-right: 0;
+                margin-bottom: 2rem;
+            }
+        }
+
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px;
+            border-radius: 5px;
+            color: white;
+            font-weight: bold;
+            z-index: 1001;
+            display: none;
+        }
+
+        .success {
+            background-color: #4CAF50;
+        }
+
+        .error {
+            background-color: #f44336;
+        }
+
+        .donation-history {
+            margin-top: 2rem;
+            padding: 1rem;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        #card-element {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+    </style>
+    <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>Eco Power Solutions</h1>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Donation.html">Donate</a></li>
+                <li><a href="Track.html">Track</a></li>
+                <li><a href="Impact.html">Impact</a></li>
+                <li><a href="Volunteer.html">Volunteer</a></li>
+                <li><a href="feedback.php">Feedback</a></li>
+                <li><a href="login.php">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="donate" class="donation-section">
+        <div class="container donation-container">
+            <div class="donation-form">
+                <h2>Make a Donation</h2>
+                <form id="donationForm">
+                    <div class="form-group">
+                        <label for="name">Full Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="amount">Donation Amount (Kes)</label>
+                        <input type="number" id="amount" name="amount" required min="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="card-element">Credit or debit card</label>
+                        <div id="card-element"></div>
+                        <div id="card-errors" role="alert"></div>
+                    </div>
+                    <button type="submit" class="btn">Donate Now</button>
+                </form>
+            </div>
+            <div class="impact-section">
+                <h2>Your Impact</h2>
+                <div class="impact-item">
+                    <h3>Kes 1000 can provide</h3>
+                    <p>Solar-powered lighting for one household for a month</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Kes 2500 can support</h3>
+                    <p>The installation of energy-efficient appliances in a low-income home</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Kes 5000 can fund</h3>
+                    <p>Educational programs on renewable energy for a classroom</p>
+                </div>
+                <div class="impact-item">
+                    <h3>Kes 10000 can contribute to</h3>
+                    <p>The development of a community solar project</p>
+                </div>
+                <div class="donation-history">
+                    <h3>Your Donation History</h3>
+                    <p>Total Donated: <span id="totalDonated">Kes 0</span></p>
+                    <ul id="donationList"></ul>
+                </div>
+            </div>
+        </div>
+    </section>
+    <div id="notification" class="notification"></div>
+
+    <footer class="footer">
+        <p>&copy; 2024 Eco Power Solutions. All rights reserved. <a href="#">Terms of Service</a> | <a href="#">Privacy Policy</a></p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const donationForm = document.getElementById('donationForm');
+        const notification = document.getElementById('notification');
+        const totalDonatedElement = document.getElementById('totalDonated');
+        const donationList = document.getElementById('donationList');
+
+        let totalDonated = 0;
+        const stripe = Stripe('pk_test_51JHZTJFSHRMmy4wAkjT6N6HkvY3QWW4FbslHD4NFh4iIM24d3oNxzV9k5It0vTUGO7yt5IzsmJZyRcm3R6nRRVck00yt9HuhzD');
+        const elements = stripe.elements();
+        const cardElement = elements.create('card');
+        cardElement.mount('#card-element');
+
+        function showNotification(message, type) {
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
+        }
+
+        function updateDonationHistory(amount) {
+            totalDonated += parseFloat(amount);
+            totalDonatedElement.textContent = `Kes ${totalDonated.toFixed(2)}`;
+            const listItem = document.createElement('li');
+            listItem.textContent = `Kes ${amount} - ${new Date().toLocaleString()}`;
+            donationList.appendChild(listItem);
+        }
+
+        donationForm.addEventListener('submit', async function(e) {
+            e.preventDefault();
+            const amount = document.getElementById('amount').value;
+
+            try {
+                // Mock response from server for testing purpose
+                const mockResponse = { clientSecret: 'dummy_client_secret' };
+
+                // Mock Stripe's confirmCardPayment for testing
+                const { paymentIntent, error } = await new Promise((resolve) => {
+                    setTimeout(() => {
+                        resolve({ paymentIntent: { status: 'succeeded' }, error: null });
+                    }, 500);
+                });
+
+                if (error) {
+                    showNotification(error.message, 'error');
+                } else if (paymentIntent.status === 'succeeded') {
+                    showNotification(`Donation of Kes ${amount} successful! Thank you for your support.`, 'success');
+                    updateDonationHistory(amount);
+                    donationForm.reset();
+                    cardElement.clear();
+                }
+            } catch (error) {
+                showNotification('An error occurred while processing your donation.', 'error');
+            }
+        });
+    });
+</script>
+
+</body>
+</html>

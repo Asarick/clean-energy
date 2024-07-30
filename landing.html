@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Power Solutions - Home</title>
+    <style>
+        /* CSS styles */
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --background-color: #FFFFFF;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .hero {
+            background: url('images/osorio-wind-farm-1403824_1920.jpg') no-repeat center center/cover;
+            height: 100vh;
+            color: var(--background-color);
+            display: flex;
+            align-items: center;
+            text-align: center;
+        }
+
+        .hero-content {
+            width: 100%;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--accent-color);
+            color: var(--text-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: opacity 0.2s ease-in;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .about-us {
+            padding: 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .about-us h2 {
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.5rem;
+        }
+
+        .features {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            margin-top: 3rem;
+        }
+
+        .feature {
+            flex: 1;
+            text-align: center;
+            padding: 2rem;
+            margin: 1rem;
+            background-color: #f4f4f4;
+            border-radius: 10px;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+        }
+
+        .feature i {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .footer {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+        }
+
+        .footer a {
+            color: var(--background-color);
+            text-decoration: none;
+        }
+
+        .login-message {
+            text-align: center;
+            padding: 2rem 0;
+            background-color: #f4f4f4;
+        }
+
+        @media (max-width: 768px) {
+            .navbar .container {
+                flex-direction: column;
+            }
+
+            .features {
+                flex-direction: column;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>Eco Power Solutions</h1>
+            <a href="login.php" class="btn">Login / Sign Up</a>
+        </div>
+    </nav>
+
+    <header id="home" class="hero">
+        <div class="container hero-content">
+            <h1>Power the Future with Clean Energy</h1>
+            <p>Your donation can light up lives and protect our planet</p>
+            <a href="login.php" class="btn">Get Started</a>
+        </div>
+    </header>
+
+    <section id="about" class="about-us">
+        <div class="container">
+            <h2>About Us</h2>
+            <p>At Eco Power Solutions, we're committed to accelerating the transition to clean, renewable energy sources. Every donation contributes to a sustainable future, powering communities and preserving our environment for generations to come.</p>
+            
+            <div class="features">
+                <div class="feature">
+                    <i class="fas fa-hand-holding-usd"></i>
+                    <h3>Easy Donations</h3>
+                    <p>Make one-time or recurring donations with just a few clicks.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-chart-line"></i>
+                    <h3>Track Impact</h3>
+                    <p>See how your contributions are making a real difference.</p>
+                </div>
+                <div class="feature">
+                    <i class="fas fa-users"></i>
+                    <h3>Volunteer</h3>
+                    <p>Join our community of volunteers and make an impact on the ground.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="login-message">
+        <div class="container">
+            <h2>Ready to Make a Difference?</h2>
+            <p>To interact with our system and start making donations, please log in or sign up.</p>
+            <a href="login.php" class="btn">Get Started</a>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Eco Power Solutions. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="#">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navbar links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Simple animation for features
+        const features = document.querySelectorAll('.feature');
+        features.forEach(feature => {
+            feature.addEventListener('mouseenter', () => {
+                feature.style.backgroundColor = '#e0e0e0';
+            });
+            feature.addEventListener('mouseleave', () => {
+                feature.style.backgroundColor = '#f4f4f4';
+            });
+        });
+    </script>
+</body>
+</html>

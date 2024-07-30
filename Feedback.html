@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eco Power Solutions - Feedback</title>
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #2196F3;
+            --accent-color: #FFC107;
+            --background-color: #FFFFFF;
+            --text-color: #333333;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: var(--background-color);
+            padding: 1rem 0;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar ul {
+            display: flex;
+            list-style: none;
+        }
+
+        .navbar ul li {
+            margin-left: 20px;
+        }
+
+        .navbar a {
+            color: var(--background-color);
+            text-decoration: none;
+            font-size: 18px;
+        }
+
+        .feedback-section {
+            padding: 6rem 0 4rem 0;
+            background-color: var(--background-color);
+        }
+
+        .feedback-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .feedback-form {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .feedback-form h2 {
+            margin-bottom: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.5rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--background-color);
+            padding: 0.8rem 1.5rem;
+            border: none;
+            cursor: pointer;
+            font-size: 1.1rem;
+            border-radius: 30px;
+            text-decoration: none;
+            transition: opacity 0.2s ease-in;
+        }
+
+        .btn:hover {
+            opacity: 0.8;
+        }
+
+        .testimonials {
+            flex: 1;
+            min-width: 300px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .testimonials h2 {
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card {
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-card p {
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .testimonial-card .author {
+            text-align: right;
+            font-weight: bold;
+        }
+
+        .faq {
+            flex-basis: 100%;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            padding: 2rem;
+        }
+
+        .faq h2 {
+            margin-bottom: 1rem;
+        }
+
+        .faq-item {
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .faq-answer {
+            display: none;
+            margin-top: 0.5rem;
+            padding-left: 1rem;
+        }
+
+        .footer {
+            background-color: var(--text-color);
+            color: var(--background-color);
+            text-align: center;
+            padding: 2rem 0;
+            margin-top: 2rem;
+        }
+
+        .footer a {
+            color: var(--background-color);
+            text-decoration: none;
+        }
+
+        @media (max-width: 768px) {
+            .feedback-container {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <h1>Eco Power Solutions</h1>
+            <ul>
+                <li><a href="Home.html">Home</a></li>
+                <li><a href="Donation.html">Donate</a></li>
+                <li><a href="Track.html">Track</a></li>
+                <li><a href="Impact.html">Impact</a></li>
+                <li><a href="Volunteer.html">Volunteer</a></li>
+                <li><a href="login.php">Logout</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section id="feedback" class="feedback-section">
+        <div class="container feedback-container">
+            <div class="feedback-form">
+                <h2>Share Your Feedback</h2>
+                <form id="feedbackForm">
+                    <div class="form-group">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="feedbackType">Feedback Type</label>
+                        <select id="feedbackType" name="feedbackType" required>
+                            <option value="">Select an option</option>
+                            <option value="suggestion">Suggestion</option>
+                            <option value="complaint">Complaint</option>
+                            <option value="praise">Praise</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="message">Your Message</label>
+                        <textarea id="message" name="message" required></textarea>
+                    </div>
+                    <button type="submit" class="btn">Submit Feedback</button>
+                </form>
+            </div>
+
+            <div class="testimonials">
+                <h2>Recent Testimonials</h2>
+                <div id="testimonialList">
+                    <!-- Testimonials will be inserted here -->
+                </div>
+            </div>
+
+            <div class="faq">
+                <h2>Frequently Asked Questions</h2>
+                <div id="faqList">
+                    <!-- FAQ items will be inserted here -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Eco Power Solutions. All rights reserved.</p>
+            <p>
+                <a href="#">Privacy Policy</a> | 
+                <a href="#">Terms of Service</a> | 
+                <a href="Feedback.php">Contact Us</a>
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Simulated testimonial data (replace with actual data from your backend)
+        const testimonials = [
+            { text: "Eco Power Solutions made it easy for me to contribute to clean energy projects. I love seeing the impact of my donations!", author: "Jacob Juma" },
+            { text: "The transparency in how funds are used is impressive. It's great to see exactly where my money is going.", author: "Alex Akok" },
+            { text: "I've been donating monthly for a year now, and I'm amazed at the progress we've made together!", author: "Abu Hanifa" }
+        ];
+
+        // Simulated FAQ data (replace with actual data from your backend)
+        const faqs = [
+            { question: "How can I track my donations?", answer: "You can track your donations by logging into your account and visiting the 'Track Donations' page." },
+            { question: "Are my donations tax-deductible?", answer: "Yes, all donations to Eco Power Solutions are tax-deductible. We'll provide you with a receipt for your records." },
+            { question: "Can I set up recurring donations?", answer: "Absolutely! When making a donation, you can choose to make it a monthly or annual recurring donation." },
+            { question: "How do you select projects to fund?", answer: "We carefully vet all projects to ensure they align with our mission of promoting clean energy. We consider factors such as environmental impact, community benefit, and long-term sustainability." },
+            { question: "How does Eco Power Solutions ensure transparency in fund usage?", answer: "We provide detailed reports on how donations are allocated and the progress of funded projects. You can view these reports on our website under the 'Transparency' section." },
+            { question: "What types of clean energy projects does Eco Power Solutions support", answer: "We support a variety of projects, including solar panel installations, wind farms, hydroelectric systems, and energy efficiency upgrades. Our goal is to fund projects that have a significant positive impact on the environment and communities." },
+            { question: "How can I get involved beyond donating?", answer: "Apart from donating, you can volunteer your time, spread the word about our mission, or participate in our events and campaigns. Visit the 'Get Involved' page on our website for more details." },
+            { question: "What is the process for withdrawing funds if a project is canceled or delayed?", answer: "If a project is canceled or significantly delayed, we will inform donors and offer the option to reallocate their funds to another project or receive a refund. Our team will work with you to ensure your contributions are used effectively." },
+            { question: "Is there a minimum donation amount required to participate?", answer:"No, there is no minimum donation amount. We appreciate contributions of any size, as every bit helps us achieve our goals. You can choose to donate as little or as much as you're comfortable with." },
+            { question: "How do I know the projects are making a difference?", answer: "We provide regular updates and impact reports, showcasing the progress and outcomes of funded projects. You can see the positive changes your donations are helping to create in the communities and environments we support." },
+            { question: "Can I donate on behalf of someone else as a gift?", answer: "Yes, you can make a donation in someone else's name as a gift. We'll provide a personalized certificate or acknowledgment to commemorate the donation, making it a meaningful and thoughtful gift."},
+            { question: "What measures does Eco Power Solutions take to ensure data security?", answer: "We use industry-standard encryption and security protocols to protect your personal information. Our privacy policy outlines how we handle and safeguard your data, ensuring your information is secure." }
+        ];
+
+        document.addEventListener('DOMContentLoaded', function() {
+            populateTestimonials();
+            populateFAQs();
+            setupFeedbackForm();
+        });
+
+        function populateTestimonials() {
+            const testimonialList = document.getElementById('testimonialList');
+            testimonials.forEach(testimonial => {
+                const testimonialCard = document.createElement('div');
+                testimonialCard.classList.add('testimonial-card');
+                testimonialCard.innerHTML = `
+                    <p>"${testimonial.text}"</p>
+                    <div class="author">- ${testimonial.author}</div>
+                `;
+                testimonialList.appendChild(testimonialCard);
+            });
+        }
+
+        function populateFAQs() {
+            const faqList = document.getElementById('faqList');
+            faqs.forEach(faq => {
+                const faqItem = document.createElement('div');
+                faqItem.classList.add('faq-item');
+                faqItem.innerHTML = `
+                    <div class="faq-question">${faq.question}</div>
+                    <div class="faq-answer">${faq.answer}</div>
+                `;
+                faqList.appendChild(faqItem);
+            });
+
+            // Add click event to toggle FAQ answers
+            document.querySelectorAll('.faq-question').forEach(question => {
+                question.addEventListener('click', function() {
+                    this.nextElementSibling.style.display = 
+                        this.nextElementSibling.style.display === 'none' ? 'block' : 'none';
+                });
+            });
+        }
+
+        function setupFeedbackForm() {
+            const feedbackForm = document.getElementById('feedbackForm');
+            feedbackForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                // Here you would typically send the form data to your server
+                alert('Thank you for your feedback! We appreciate your input.');
+                this.reset();
+            });
+        }
+    </script>
+</body>
+</html>
